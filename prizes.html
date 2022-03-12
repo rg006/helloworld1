@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/index.css">
-    <title>Home</title>
+    <title>Prizes</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
@@ -23,14 +23,11 @@
                 <a href="home.html">
                     <li>Home</li>
                 </a>
-                <a href="add.html">
-                    <li>Add child</li>
+                <a href="tasks.html">
+                    <li>Tasks</li>
                 </a>
-                <a href="setTasks.html">
-                    <li>Set tasks</li>
-                </a>
-                <a href="setPrizes.html">
-                    <li>Set prizes</li>
+                <a href="prizes.html">
+                    <li>Prizes</li>
                 </a>
                 <a href="logout.html">
                     <li>Log Out</li>
@@ -39,18 +36,18 @@
         </div>
     </nav>
     <!--don't change this class name!!-->
-    <!-- example child card created:
-    <div class="child">
-        <h2 class="name">child-name</h2>
-        <img src="../assets/image5.png" class="childImage">
-        <h4 class="email">child-email</h4>
-        <h4 class="money">child-money</h4>
+    <!-- example tasks card created:
+    <div class="prize">
+        <h2 class="name">prize-name</h2>
+        <h4 class="desc">desc-desc</h4>
+        <h4 class="cost" id="cost">cost</h4>
+        <button class="claim">Claim</button>
     </div>
     -->
-    <div class="items-container">
+    <div class="prizes">
 
     </div>
 </body>
-<script type="module" src="../modules/getchildren.js"></script>
+<script type="module" src="../modules/prizes.js"></script>
 
 </html>

@@ -65,5 +65,6 @@ function newChild() {
         updates['people/' + getCookie("email") + '/children/' + newPostKey] = email;
         update(ref(db), updates)
         console.log("submitted to firebase")
+        window.location.href = "../add.html";
     }
 }
