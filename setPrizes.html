@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/newPrize.css">
+    <link rel="stylesheet" href="styles/scrollCards.css">
+
     <title>Add Prize</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -19,7 +21,6 @@
             <span></span>
             <span></span>
             <span></span>
-            <ul id="menu">
             <ul id="menu">
                 <a href="home.html">
                     <li>Home</li>
@@ -43,15 +44,18 @@
                     <li>Log Out</li>
                 </a>
             </ul>
-            </ul>
         </div>
     </nav>
     <h1>Add Prize</h1>
     <div class="form">
-        <input type="text" class="name" name="name" placeholder="Name of Prize" required>
+        <input type="text" class="nameF" name="name" placeholder="Name of Prize" required>
         <input type="text" class="description" name="description" placeholder="Prize Description" required>
         <input type="number" step="1" class="cost" name="cost" placeholder="Cost of prize" required>
         <button class="newPrize">Submit Prize</button>
+    </div>
+    <h1>Existing prizes:</h1>
+    <div class="prizes">
+
     </div>
 </body>
 <script type="module" src="../modules/setPrizes.js"></script>

@@ -9,7 +9,8 @@ import {
     get,
     set,
     update,
-    push
+    push,
+    onValue
 }
 from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 
@@ -46,9 +47,9 @@ function getCookie(cname) {
 }
 
 function newTask() {
-    let name = document.querySelector(".name").value
+    let name = document.querySelector(".nameF").value
     let description = document.querySelector(".description").value
-    let money = document.querySelector(".money").value
+    let money = document.querySelector(".moneyF").value
 
     const newPostKey = push(child(ref(db), 'people/' + getCookie("email") + '/tasks')).key;
     var data = {
@@ -63,4 +64,65 @@ function newTask() {
         window.location.href = "../setTasks.html";
     });
 
+}
+
+function newPrize() {
+    let name = document.querySelector(".nameF").value
+    let description = document.querySelector(".description").value
+    let money = document.querySelector(".money").value
+
+    const newPostKey = push(child(ref(db), 'people/' + getCookie("email") + '/prizes')).key;
+    var data = {
+        name: name,
+        description: description,
+        money: money
+    };
+    var updates = {};
+    updates['people/' + getCookie("email") + '/prizes/' + newPostKey] = data;
+    update(ref(db), updates).then((result) => {
+        console.log("submitted to firebase");
+        window.location.href = "../setPrizes.html";
+    });
+}
+
+getAll();
+
+function getAll() {
+    const dbRef = ref(db, 'people/' + getCookie("email") + '/tasks');
+    onValue(dbRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            console.log(childSnapshot.val());
+            var name = childSnapshot.val().name;
+            var money = childSnapshot.val().money;
+            console.log(money)
+            var desc = childSnapshot.val().description;
+            createTaskDiv(name, money, desc);
+        });
+    }, {
+        onlyOnce: true
+    });
+}
+
+function createTaskDiv(name, money, desc) {
+    var itemsContainer = document.querySelector(".tasks")
+    var childDiv = document.createElement("div");
+    var nameDiv = document.createElement("h2");
+    var descDiv = document.createElement("h4");
+    var moneyDiv = document.createElement("h4");
+
+    nameDiv.innerHTML = name;
+    descDiv.innerHTML = desc;
+    moneyDiv.innerHTML = "Earn: " + money;
+
+    childDiv.appendChild(nameDiv);
+    childDiv.appendChild(descDiv);
+    childDiv.appendChild(moneyDiv);
+
+    // to add css classes
+    childDiv.classList.add('task');
+    nameDiv.classList.add('name');
+    moneyDiv.classList.add('money');
+    descDiv.classList.add('desc');
+
+    itemsContainer.appendChild(childDiv);
 }

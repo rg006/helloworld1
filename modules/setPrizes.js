@@ -9,7 +9,8 @@ import {
     get,
     set,
     update,
-    push
+    push,
+    onValue
 }
 from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 
@@ -46,7 +47,7 @@ function getCookie(cname) {
 }
 
 function newPrize() {
-    let name = document.querySelector(".name").value
+    let name = document.querySelector(".nameF").value
     let description = document.querySelector(".description").value
     let cost = document.querySelector(".cost").value
 
@@ -62,4 +63,45 @@ function newPrize() {
         console.log("submitted to firebase");
         window.location.href = "../setPrizes.html";
     });
+}
+
+getAll();
+
+function getAll() {
+    const dbRef = ref(db, 'people/' + getCookie("email") + '/prizes');
+    onValue(dbRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            console.log(childSnapshot.val());
+            var name = childSnapshot.val().name;
+            var cost = childSnapshot.val().cost;
+            var desc = childSnapshot.val().description;
+            createPrizeDiv(name, cost, desc);
+        });
+    }, {
+        onlyOnce: true
+    });
+}
+
+function createPrizeDiv(name, cost, desc) {
+    var itemsContainer = document.querySelector(".prizes")
+    var childDiv = document.createElement("div");
+    var nameDiv = document.createElement("h2");
+    var descDiv = document.createElement("h4");
+    var costDiv = document.createElement("h4");
+
+    nameDiv.innerHTML = name;
+    descDiv.innerHTML = desc;
+    costDiv.innerHTML = "Cost: " + cost;
+
+    childDiv.appendChild(nameDiv);
+    childDiv.appendChild(descDiv);
+    childDiv.appendChild(costDiv);
+
+    // to add css classes
+    childDiv.classList.add('prize');
+    nameDiv.classList.add('name');
+    costDiv.classList.add('cost');
+    descDiv.classList.add('desc');
+
+    itemsContainer.appendChild(childDiv);
 }
