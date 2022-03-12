@@ -1,26 +1,66 @@
-body {
-    font-family: "Inter", sans-serif;
+
+
+h2{
+	 font-weight: bolder;
+     font-size: 4em;
+	 text-align:center
 }
 
-
-h1 {
+.content {
+	
     color: black;
+    font-family: 'Inter';
+	display:block;
+    margin: 10;
+	
+background-color: #f5f5f5;
+	border-radius:15px;
+	border: solid;
+	border-color: #f5f5f5;
+	border-width: 5px;
+	
+}
+p{
+	color: black;
     margin-bottom: 0.5em;
     font-family: 'Inter';
-    font-weight: bolder;
-    font-size: 4em;
-    color: white;
     margin: 0;
+	float:center;
+	text-align:center;
 }
 
-
+.signin{
+	border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display:block;
+  font-size: 16px;
+  margin:0 auto;
+  border-radius:5px;
+  height: 60px;
+  width: 500px;
+  background-color:#8fd8d2;
+  
+}
+.signin:hover{
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 .type-span {
     border-right: .05em solid;
     animation: caret 1s steps(1) infinite;
 }
 
 .container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+ 
+	margin: 0;  
+   padding: 0;  
+   min-height: 100vh;  
+   background: #f5f5f5;  
+   display: flex;  
+   justify-content: center;  
+   align-items: center;  
+   text-align: center;
+   font-family: consolas;  
+   	
 }
