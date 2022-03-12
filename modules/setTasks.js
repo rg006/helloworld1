@@ -24,8 +24,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const newUser = document.querySelector('.newchild');
-newUser.addEventListener('click', newChild);
+const newT = document.querySelector('.newTask');
+newT.addEventListener('click', newTask);
 const db = getDatabase();
 
 function getCookie(cname) {
@@ -45,25 +45,21 @@ function getCookie(cname) {
     return "";
 }
 
-function newChild() {
+function newTask() {
     let name = document.querySelector(".name").value
-    let email = document.querySelector(".email").value
+    let description = document.querySelector(".description").value
     let money = document.querySelector(".money").value
 
-    if (name == "" || email == "" || money == "") {
-        alert("All required fields must be filled!");
-        return false;
-    } else {
-        set(ref(db, 'people/' + email.replaceAll(".", "-")), {
-            type: 'child',
-            name: name,
-            money: 0,
-            parent: getCookie("email"),
-        });
-        const newPostKey = push(child(ref(db), 'people/' + getCookie("email") + '/children')).key;
-        const updates = {};
-        updates['people/' + getCookie("email") + '/children/' + newPostKey] = email;
-        update(ref(db), updates)
-        console.log("submitted to firebase")
-    }
+    const newPostKey = push(child(ref(db), 'people/' + getCookie("email") + '/tasks')).key;
+    var data = {
+        name: name,
+        description: description,
+        money: money
+    };
+    var updates = {};
+    updates['people/' + getCookie("email") + '/tasks/' + newPostKey] = data;
+    update(ref(db), updates)
+    console.log("submitted to firebase");
+    window.location.href = "../setTasks.html";
+
 }

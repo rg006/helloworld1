@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/index.css">
-    <title>FinBud!</title>
+    <title>Add Task</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
@@ -21,30 +21,28 @@
             <span></span>
             <ul id="menu">
                 <a href="home.html">
-                    <li>Home</li>
+                    <li>Parent home</li>
                 </a>
-                <a href="tasks.html">
-                    <li>Tasks</li>
+                <a href="add.html">
+                    <li>Add child</li>
                 </a>
-                <a href="prizes.html">
-                    <li>Prizes</li>
+                <a href="setTasks.html">
+                    <li>Set tasks</li>
+                </a>
+                <a href="setPrizes.html">
+                    <li>Set prizes</li>
                 </a>
             </ul>
         </div>
     </nav>
-    <!--don't change this class name!!-->
-    <!-- example child card created:
-    <div class="child">
-        <h2 class="name">child-name</h2>
-        <img src="../assets/image5.png" class="childImage">
-        <h4 class="email">child-email</h4>
-        <h4 class="money">child-money</h4>
-    </div>
-    -->
-    <div class="child-main">
-
+    <h1>add child</h1>
+    <div class="form">
+        <input type="text" class="name" name="name" placeholder="Name" required>
+        <input type="text" class="description" name="description" placeholder="Task Description" required>
+        <input type="number" step="1" class="money" name="money" placeholder="Money earned from task" required>
+        <button class="newTask">Submit Task</button>
     </div>
 </body>
-<script type="module" src="../modules/childPage.js"></script>
+<script type="module" src="../modules/setTasks.js"></script>
 
 </html>

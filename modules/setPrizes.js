@@ -24,8 +24,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const newUser = document.querySelector('.newchild');
-newUser.addEventListener('click', newChild);
+const newT = document.querySelector('.newPrize');
+newT.addEventListener('click', newPrize);
 const db = getDatabase();
 
 function getCookie(cname) {
@@ -45,25 +45,20 @@ function getCookie(cname) {
     return "";
 }
 
-function newChild() {
+function newPrize() {
     let name = document.querySelector(".name").value
-    let email = document.querySelector(".email").value
-    let money = document.querySelector(".money").value
+    let description = document.querySelector(".description").value
+    let cost = document.querySelector(".cost").value
 
-    if (name == "" || email == "" || money == "") {
-        alert("All required fields must be filled!");
-        return false;
-    } else {
-        set(ref(db, 'people/' + email.replaceAll(".", "-")), {
-            type: 'child',
-            name: name,
-            money: 0,
-            parent: getCookie("email"),
-        });
-        const newPostKey = push(child(ref(db), 'people/' + getCookie("email") + '/children')).key;
-        const updates = {};
-        updates['people/' + getCookie("email") + '/children/' + newPostKey] = email;
-        update(ref(db), updates)
-        console.log("submitted to firebase")
-    }
+    const newPostKey = push(child(ref(db), 'people/' + getCookie("email") + '/prizes')).key;
+    var data = {
+        name: name,
+        description: description,
+        cost: cost
+    };
+    var updates = {};
+    updates['people/' + getCookie("email") + '/prizes/' + newPostKey] = data;
+    update(ref(db), updates)
+    console.log("submitted to firebase");
+    window.location.href = "../setPrizes.html";
 }
