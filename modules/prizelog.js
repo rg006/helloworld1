@@ -45,76 +45,41 @@ function getCookie(cname) {
 
 getAll();
 
-function getPrizes(parentEmail, money, childName) {
-    const dbRef = ref(db, 'people/' + parentEmail + '/prizes');
-
+function getAll() {
+    const dbRef = ref(db, 'people/' + getCookie("email") + '/bought');
     onValue(dbRef, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
             console.log(childSnapshot.val());
-            var description = childSnapshot.val().description;
-            var name = childSnapshot.val().name;
+            var name = childSnapshot.val().child;
             var cost = childSnapshot.val().cost;
-            createPrizeDiv(description, name, cost, money, parentEmail, childName);
+            var prize = childSnapshot.val().prize;
+            createPrizeDiv(name, cost, prize);
         });
     }, {
         onlyOnce: true
     });
 }
 
-function getAll() {
-    const dbRef = ref(db)
-    get(child(dbRef, 'people/' + getCookie("email"))).then((snapshot) => {
-        console.log(snapshot.val());
-        var childName = snapshot.val().name;
-        var parentEmail = snapshot.val().parent;
-        var money = snapshot.val().money;
-        getPrizes(parentEmail, money, childName);
-    }).catch((error) => {
-        console.log(error)
-    });
-}
-
-function createPrizeDiv(description, name, cost, money, parentEmail, childName) {
-    var itemsContainer = document.querySelector(".prizes")
+function createPrizeDiv(name, cost, prize) {
+    var itemsContainer = document.querySelector(".logs")
     var childDiv = document.createElement("div");
     var nameDiv = document.createElement("h2");
-    var descriptionDiv = document.createElement("h4");
+    var prizeDiv = document.createElement("h4");
     var costDiv = document.createElement("h4");
-    var button = document.createElement("button");
 
     nameDiv.innerHTML = name;
-    descriptionDiv.innerHTML = description;
+    prizeDiv.innerHTML = prize;
     costDiv.innerHTML = "Cost: " + cost;
-    button.innerHTML = "Claim";
 
     childDiv.appendChild(nameDiv);
-    childDiv.appendChild(descriptionDiv);
+    childDiv.appendChild(prizeDiv);
     childDiv.appendChild(costDiv);
-    childDiv.appendChild(button);
 
     // to add css classes
     childDiv.classList.add('prize');
     nameDiv.classList.add('name');
-    descriptionDiv.classList.add('desc');
     costDiv.classList.add('cost');
-    button.classList.add('claim');
-    // Buy item
-    button.onclick = function () {
-        console.log("clicked");
-        if (money < cost) {
-            alert("You have too little money to buy this item! Do more tasks!");
-        } else {
-            const dbRef = ref(db, 'people/' + parentEmail + '/bought');
-            push(dbRef, {
-                child: childName,
-                prize: name,
-                cost: cost,
-            });
-            const dbRef2 = ref(db, 'people/' + getCookie("email") + '/money');
-            set(dbRef2, parseInt(money) - parseInt(cost));
-            alert("You bought " + name + " and spent " + cost + "!");
-        }
-    };
-    button.id = name;
+    prizeDiv.classList.add('desc');
+
     itemsContainer.appendChild(childDiv);
 }

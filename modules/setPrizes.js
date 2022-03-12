@@ -58,7 +58,8 @@ function newPrize() {
     };
     var updates = {};
     updates['people/' + getCookie("email") + '/prizes/' + newPostKey] = data;
-    update(ref(db), updates)
-    console.log("submitted to firebase");
-    window.location.href = "../setPrizes.html";
+    update(ref(db), updates).then((result) => {
+        console.log("submitted to firebase");
+        window.location.href = "../setPrizes.html";
+    });
 }

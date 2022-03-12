@@ -47,12 +47,23 @@ getC();
 
 function getC() {
     const dbRef = ref(db, 'people/' + getCookie("email") + '/children');
-
     onValue(dbRef, (snapshot) => {
+        var success = false;
         snapshot.forEach((childSnapshot) => {
             var childEmail = childSnapshot.val();
             getChildren(childEmail.replaceAll(".", "-"));
+            success = true;
         });
+        if (!success) {
+            console.log("none");
+            var itemsContainer = document.querySelector(".items-container")
+            var childDiv = document.createElement("div");
+            var nameDiv = document.createElement("h3");
+            nameDiv.innerHTML = "No children yet. Add a child using the menu!";
+            childDiv.appendChild(nameDiv);
+            itemsContainer.appendChild(childDiv);
+            console.log("added div");
+        }
     }, {
         onlyOnce: true
     });
@@ -80,9 +91,9 @@ function createChildrenDiv(name, email, money) {
 
     nameDiv.innerHTML = name;
     emailDiv.innerHTML = email;
-    moneyDiv.innerHTML = money;
+    moneyDiv.innerHTML = "Money:" + money;
 
-    var imgArr = ["../assets/image3.png", "../assets/image5.png", "../assets/image6.png", "../assets/image7.png"]
+    var imgArr = ["../assets/image3.png", "../assets/image5.png", "../assets/image6.png"]
     image.src = imgArr[Math.floor(Math.random() * imgArr.length)];
 
     childDiv.appendChild(nameDiv);

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/add.css">
     <link rel="stylesheet" href="styles/navbar.css">
-    <title>Add child</title>
+    <link rel="stylesheet" href="styles/scrollCards.css">
+    <title>Prizes</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
@@ -21,38 +21,44 @@
             <span></span>
             <ul id="menu">
                 <a href="home.html">
-                    <li>Parent home</li>
+                    <li>Home</li>
                 </a>
                 <a href="add.html">
                     <li>Add child</li>
                 </a>
-
                 <a href="setTasks.html">
                     <li>Set tasks</li>
                 </a>
                 <a href="setPrizes.html">
                     <li>Set prizes</li>
                 </a>
-                <a href="logout.html">
-                    <li>Log Out</li>
+                <a href="prizelog.html">
+                    <li>Prize log</li>
                 </a>
-
+                <a href="tasklog.html">
+                    <li>Task log</li>
+                </a>
                 <a href="logout.html">
                     <li>Log Out</li>
                 </a>
             </ul>
         </div>
     </nav>
-    <h1>Add child</h1>
-    <div class="form">
-        <input type="" class="name" name="name" placeholder="Name" required>
-        <input type="email" class="email" name="email" placeholder="Gmail (that your child will use to sign in with)"
-            required>
-        <input type="number" step="1" class="money" name="money" placeholder="Current amount of money" required>
-        <button class="newchild">Save Profile</button>
+    <!--don't change this class name!!-->
+    <!-- example tasks card created:
+    <div class="prize">
+        <h2 class="name">prize-name</h2>
+        <h4 class="desc">desc-desc</h4>
+        <h4 class="cost" id="cost">cost</h4>
+        <button class="claim">Claim</button>
+    </div>
+    -->
+    <h1>Prize logs</h1>
+    <div class="logs">
+
     </div>
 </body>
-<script type="module" src="../modules/newchild.js"></script>
+<script type="module" src="../modules/tasklog.js"></script>
 <script type="module" src="../modules/loginalr.js"></script>
 
 </html>

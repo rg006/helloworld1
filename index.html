@@ -5,27 +5,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/index.css">
-    <title>FinBud!</title>
+
+    <link rel="stylesheet" href="styles/navbar.css">
+    <title>FinanceBud!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="content">
+    <div class="parent">
+        <div class="child">
             <h2>
-                Hello! I'm your new financial friend!
+                Hello! I'm your new...
             </h2>
+            <h1>Financial Buddy!</h1>
             <p>
                 Are your kids struggling to grasp the concept of money?
-                Have no fear, because we aim to help you!<br>
-                Whatever just put some landing page stuff here
+                Have no fear, because we're gonna help you!<br>
             </p>
+            <p>Log in below, or read the instructions...</p>
             <!--Sign in button-->
-            <button class="signin"><i class="fas fa-sign-in-alt"></i></button>
+            <button class="signin" title="Log In"><i class="fas fa-sign-in-alt"></i></button>
+            <div class="instructions">
+                <p>
+                    <strong>How it works:</strong>
+                    <ol>
+                        <li>Create a parent account by signing in!</li>
+                        <li>Add a child account using the "Add Child" function.</li>
+                        <li>Make sure you've added the child before letting them sign in to the site using the email
+                            you
+                            used to add them.</li>
+                    </ol>
+                    As a parent, you can create tasks, which will reward your child(ren) with coins. You can also
+                    add
+                    prizes,
+                    where your child(ren) will be able to purchase the prizes you've uploaded for coins earned through tasks.<br><br>
+                    As a child, you can earn coins by completing tasks and purchase prizes from your parent.
+                </p>
+            </div>
         </div>
     </div>
+
+
 </body>
 <script type="module" src="../modules/signin.js"></script>
 

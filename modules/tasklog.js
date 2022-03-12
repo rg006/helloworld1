@@ -43,43 +43,43 @@ function getCookie(cname) {
     return "";
 }
 
-// Check user type
-const dbRef = ref(db);
-get(child(dbRef, `people/${getCookie("email")}`)).then((snapshot) => {
-    // If user exists
-    console.log(snapshot.val());
-    createChildrenDiv(snapshot.val().name, getCookie("email").replaceAll("-", "."), snapshot.val().money);
-}).catch((error) => {
-    console.log(error)
-});
+getAll();
 
-function createChildrenDiv(name, email, money) {
-    var itemsContainer = document.querySelector(".child-main");
+function getAll() {
+    const dbRef = ref(db, 'people/' + getCookie("email") + '/done');
+    onValue(dbRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            console.log(childSnapshot.val());
+            var name = childSnapshot.val().child;
+            var earned = childSnapshot.val().earned;
+            var task = childSnapshot.val().task;
+            createTaskDiv(name, earned, task);
+        });
+    }, {
+        onlyOnce: true
+    });
+}
+
+function createTaskDiv(name, earned, task) {
+    var itemsContainer = document.querySelector(".logs")
     var childDiv = document.createElement("div");
     var nameDiv = document.createElement("h2");
-    var emailDiv = document.createElement("h4");
-    var moneyDiv = document.createElement("h4");
-    var image = document.createElement("img");
+    var taskDiv = document.createElement("h4");
+    var earnedDiv = document.createElement("h4");
 
     nameDiv.innerHTML = name;
-    emailDiv.innerHTML = email;
-    moneyDiv.innerHTML = "Money: " + money;
-
-    var imgArr = ["../assets/image3.png", "../assets/image5.png", "../assets/image6.png"]
-    image.src = imgArr[Math.floor(Math.random() * imgArr.length)];
+    taskDiv.innerHTML = task;
+    earnedDiv.innerHTML = "Earned: " + earned;
 
     childDiv.appendChild(nameDiv);
-    childDiv.appendChild(image);
-    childDiv.appendChild(emailDiv);
-    childDiv.appendChild(moneyDiv);
+    childDiv.appendChild(taskDiv);
+    childDiv.appendChild(earnedDiv);
 
     // to add css classes
-    childDiv.classList.add('child');
+    childDiv.classList.add('task');
     nameDiv.classList.add('name');
-    emailDiv.classList.add('email');
-    moneyDiv.classList.add('money');
-    image.classList.add("childImage");
-
+    earnedDiv.classList.add('money');
+    taskDiv.classList.add('desc');
 
     itemsContainer.appendChild(childDiv);
 }

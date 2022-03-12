@@ -58,8 +58,9 @@ function newTask() {
     };
     var updates = {};
     updates['people/' + getCookie("email") + '/tasks/' + newPostKey] = data;
-    update(ref(db), updates)
-    console.log("submitted to firebase");
-    window.location.href = "../setTasks.html";
+    update(ref(db), updates).then((result) => {
+        console.log("submitted to firebase")
+        window.location.href = "../setTasks.html";
+    });
 
 }
