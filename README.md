@@ -1,4 +1,4 @@
-
+Note: Github Pages deployment doesn't work, go to https://youthful-albattani-f3d5b0.netlify.app/
 ## Inspiration
 We have noticed a lot of the young children in our community were so accustomed to effortless transactions through cards or applications, they didn’t have an understanding of the need to earn money to be able to spend it. So, we decided to create a web application that helps parents teach their young kids the important concept of earning money, rather than it being a given.
 
