@@ -1,0 +1,26 @@
+body {
+    font-family: "Inter", sans-serif;
+}
+
+
+h1 {
+    color: black;
+    margin-bottom: 0.5em;
+    font-family: 'Inter';
+    font-weight: bolder;
+    font-size: 4em;
+    color: white;
+    margin: 0;
+}
+
+
+.type-span {
+    border-right: .05em solid;
+    animation: caret 1s steps(1) infinite;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

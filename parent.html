@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+    <nav role="navigation" class="nav">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+                <a href="home.html">
+                    <li>Home</li>
+                </a>
+                <a href="add.html">
+                    <li>Add child</li>
+                </a>
+                <a href="setTasks.html">
+                    <li>Set tasks</li>
+                </a>
+                <a href="setPrizes.html">
+                    <li>Set prizes</li>
+                </a>
+                <a href="logout.html">
+                    <li>Log Out</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+    <!--don't change this class name!!-->
+    <!-- example child card created:
+    <div class="child">
+        <h2 class="name">child-name</h2>
+        <img src="../assets/image5.png" class="childImage">
+        <h4 class="email">child-email</h4>
+        <h4 class="money">child-money</h4>
+    </div>
+    -->
+    <div class="items-container">
+
+    </div>
+</body>
+<script type="module" src="../modules/getchildren.js"></script>
+<script type="module" src="../modules/loginalr.js"></script>
+
+</html>
