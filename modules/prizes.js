@@ -45,7 +45,7 @@ function getCookie(cname) {
 
 getAll();
 
-function getPrizes(parentEmail, money, childName) {
+function getPrizes(parentEmail, childName) {
     const dbRef = ref(db, 'people/' + parentEmail + '/prizes');
 
     onValue(dbRef, (snapshot) => {
@@ -54,7 +54,7 @@ function getPrizes(parentEmail, money, childName) {
             var description = childSnapshot.val().description;
             var name = childSnapshot.val().name;
             var cost = childSnapshot.val().cost;
-            createPrizeDiv(description, name, cost, money, parentEmail, childName);
+            createPrizeDiv(description, name, cost, parentEmail, childName);
         });
     }, {
         onlyOnce: true
@@ -67,14 +67,13 @@ function getAll() {
         console.log(snapshot.val());
         var childName = snapshot.val().name;
         var parentEmail = snapshot.val().parent;
-        var money = snapshot.val().money;
-        getPrizes(parentEmail, money, childName);
+        getPrizes(parentEmail, childName);
     }).catch((error) => {
         console.log(error)
     });
 }
 
-function createPrizeDiv(description, name, cost, money, parentEmail, childName) {
+function createPrizeDiv(description, name, cost, parentEmail, childName) {
     var itemsContainer = document.querySelector(".prizes")
     var childDiv = document.createElement("div");
     var nameDiv = document.createElement("h2");
@@ -101,19 +100,28 @@ function createPrizeDiv(description, name, cost, money, parentEmail, childName) 
     // Buy item
     button.onclick = function () {
         console.log("clicked");
-        if (money < cost) {
-            alert("You have too little money to buy this item! Do more tasks!");
-        } else {
-            const dbRef = ref(db, 'people/' + parentEmail + '/bought');
-            push(dbRef, {
-                child: childName,
-                prize: name,
-                cost: cost,
-            });
-            const dbRef2 = ref(db, 'people/' + getCookie("email") + '/money');
-            set(dbRef2, parseInt(money) - parseInt(cost));
-            alert("You bought " + name + " and spent " + cost + "!");
-        }
+        const dbRef = ref(db)
+        get(child(dbRef, 'people/' + getCookie("email"))).then((snapshot) => {
+            console.log(snapshot.val());
+            var money = snapshot.val().money;
+            if (money < cost) {
+                alert("You have too little money to buy this item! Do more tasks!");
+            } else {
+                const dbRef = ref(db, 'people/' + parentEmail + '/bought');
+                push(dbRef, {
+                    child: childName,
+                    prize: name,
+                    cost: cost,
+                });
+
+                const dbRef2 = ref(db, 'people/' + getCookie("email") + '/money');
+                set(dbRef2, parseInt(money) - parseInt(cost));
+                alert("You bought " + name + " and spent " + cost + "!");
+            }
+        }).catch((error) => {
+            console.log(error)
+        });
+
     };
     button.id = name;
     itemsContainer.appendChild(childDiv);
