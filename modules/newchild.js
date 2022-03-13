@@ -57,7 +57,7 @@ function newChild() {
         set(ref(db, 'people/' + email.replaceAll(".", "-")), {
             type: 'child',
             name: name,
-            money: 0,
+            money: money,
             parent: getCookie("email"),
         });
         const newPostKey = push(child(ref(db), 'people/' + getCookie("email") + '/children')).key;
